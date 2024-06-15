@@ -27,7 +27,7 @@ pipeline {
             steps {
                 script {
                     // 대규모 데이터 추가를 위한 빌드
-                    bat 'javac -encoding UTF-8 -d classes src\\PerformanceTest.java'
+                    bat "javac -encoding UTF-8 -d test-classes -classpath classes;${env.JUNIT_PLATFORM_JAR} src\\PerformanceTest.java"
                     
                     // JUnit 5 테스트 실행을 위한 classpath 설정
                     def classpath = "test-classes;classes;${env.JUNIT_PLATFORM_JAR}"
