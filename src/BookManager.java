@@ -128,18 +128,5 @@ public class BookManager {
         return null;
     }
    
-    // 성능 테스트 메서드
-    public long performance_test_search(String keyword) {
-        long startTime = System.nanoTime();
-        searchBook(keyword);
-        long endTime = System.nanoTime();
-        return endTime - startTime;
-    }
 
-    public long performance_test_search_bs(int id) {
-        long startTime = System.nanoTime();
-        search_bs(id);
-        long endTime = System.nanoTime();
-        return endTime - startTime;
-    }
 }
