@@ -68,6 +68,7 @@ public class BookManager {
 			}
 		}
 		books.add(book);
+        Collections.sort(books, Comparator.comparingInt(Book::getId)); // Add 후 데이터를 정렬
 		System.out.println(book.toString() + "도서가 추가되었습니다.");
 		return 0;
 	}
@@ -108,8 +109,6 @@ public class BookManager {
     public Book search_bs(int id) {
         int left = 0;
         int right = books.size() - 1;
-        
-        Collections.sort(books, Comparator.comparingInt(Book::getId)); // 먼저 데이터를 정렬
         
         while (left <= right) {
             int mid = (left + right) / 2;
