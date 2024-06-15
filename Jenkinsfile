@@ -18,11 +18,22 @@ pipeline {
                 script {
                     // 일반 클래스 파일 컴파일
                     bat 'javac -encoding UTF-8 -d classes src\\BookManager.java'
-                    // 테스트 클래스 파일 컴파일 (JUnit JAR 파일을 클래스패스에 포함)
-                    bat "javac -encoding UTF-8 -d test-classes -classpath classes;${env.JUNIT_PLATFORM_JAR} src\\BookManagerTest.java"
                 }
             }
         }
+        // stage('Test') {
+        //     steps {
+        //         script {
+        //             // 테스트 클래스 파일 컴파일 (JUnit JAR 파일을 클래스패스에 포함)
+        //             bat "javac -encoding UTF-8 -d test-classes -classpath classes;${env.JUNIT_PLATFORM_JAR} src\\BookManagerTest.java"
+
+        //             // JUnit 5 테스트 실행을 위한 classpath 설정
+        //             def classpath = "test-classes;classes;${env.JUNIT_PLATFORM_JAR}"
+        //             // JUnit 5 테스트 실행
+        //             bat "java -cp ${classpath} org.junit.platform.console.ConsoleLauncher --select-class BookManagerTest > test_results.txt"
+        //         }
+        //     }
+        // }
         stage('Performance Test') {
             steps {
                 script {
@@ -40,7 +51,7 @@ pipeline {
     post {
         always {
             // 테스트 결과 파일을 저장하기 위해 아카이브
-            archiveArtifacts artifacts: 'test_results.txt', allowEmptyArchive: true
+            // archiveArtifacts artifacts: 'test_results.txt', allowEmptyArchive: true
             archiveArtifacts artifacts: 'performance_test_results.txt', allowEmptyArchive: true
         }
         failure {
