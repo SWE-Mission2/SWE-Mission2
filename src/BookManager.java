@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Collections;
+import java.util.Comparator;
 
 class Book {
 	private int id;
@@ -66,6 +68,7 @@ public class BookManager {
 			}
 		}
 		books.add(book);
+        Collections.sort(books, Comparator.comparingInt(Book::getId)); // Add 후 데이터를 정렬
 		System.out.println(book.toString() + "도서가 추가되었습니다.");
 		return 0;
 	}
@@ -100,5 +103,28 @@ public class BookManager {
             }
         }
         System.out.println("해당 ID(" + id + ")의 도서를 찾을 수 없습니다.");
+    }
+    
+    // 이진 탐색 메서드
+    public Book search_bs(int id) {
+        int left = 0;
+        int right = books.size() - 1;
+        
+        while (left <= right) {
+            int mid = (left + right) / 2;
+            Book midBook = books.get(mid);
+
+            if (midBook.getId() == id) {
+                System.out.println(midBook.toString() + "도서를 찾았습니다.");
+                return midBook;
+            } else if (midBook.getId() < id) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+
+        System.out.println("해당 ID(" + id + ")의 도서를 찾을 수 없습니다.");
+        return null;
     }
 }

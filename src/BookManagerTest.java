@@ -78,4 +78,32 @@ public class BookManagerTest {
 
         System.out.println("testRemoveBook 종료");
     }
+    
+    @Test
+    public void testSearch_bs() {
+        System.out.println("testSearch_bs 시작");
+
+        // 처음에는 검색 결과가 없음
+        Book book = manager.search_bs(1);
+        assertNull(book);
+        System.out.println("검색 결과: " + book);
+
+        // 책을 추가하고 ID로 이진 탐색 테스트
+        manager.addBook(1, "해리포터", "Rolling", 2013);
+        manager.addBook(2, "퍼시", "Jane", 2005);
+        manager.addBook(3, "오리고기", "오리", 2024);
+
+        // 존재하는 ID로 검색
+        book = manager.search_bs(2);
+        assertNotNull(book);
+        assertEquals("퍼시", book.getTitle());
+        System.out.println("검색 결과: " + book);
+
+        // 존재하지 않는 ID로 검색
+        book = manager.search_bs(4);
+        assertNull(book);
+        System.out.println("검색 결과: " + book);
+
+        System.out.println("testSearch_bs 종료");
+    }
 }
