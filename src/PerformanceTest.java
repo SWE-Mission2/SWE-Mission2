@@ -84,6 +84,26 @@ public class PerformanceTest {
     }
     
     @Test
+    public void testPerformance3() {
+        System.out.println("testPerformance 시작");
+        
+        long startTime = 0;
+        long endTime = 0;
+        long durationSearch = 0;
+        long durationSearchBs = 0;
+        // 성능 테스트를 위한 키워드와 ID 설정
+        String keyword = "error";
+        int id = 8;
+
+        // searchBook 성능 테스트
+        startTime = System.nanoTime();
+        manager.searchBook(keyword);
+        endTime = System.nanoTime();
+        durationSearch = endTime - startTime;
+        System.out.println("searchBook 걸린 시간: " + durationSearch + " 나노초");
+    }
+    
+    @Test
     public void testPerformance_search_bs_largeData() {
         System.out.println("testPerformance_search_bs_largeData 시작");
         
