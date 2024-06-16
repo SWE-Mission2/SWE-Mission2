@@ -50,7 +50,7 @@ public class PerformanceTest {
     }
 
     @Test
-    public void testPerformance4() {
+    public void testPerformance3() {
         System.out.println("testPerformance3 시작");
 
         long startTime = 0;
