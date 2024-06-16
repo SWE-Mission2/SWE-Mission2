@@ -48,6 +48,40 @@ public class PerformanceTest {
 
         System.out.println("testPerformance 종료");
     }
+    
+
+    @Test
+    public void testPerformance2() {
+        System.out.println("testPerformance2 시작");
+        
+        long startTime = 0;
+        long endTime = 0;
+        long durationSearch = 0;
+        long durationSearchBs = 0;
+        // 성능 테스트를 위한 키워드와 ID 설정
+        String keyword = "Java";
+        int id = 7;
+
+        // searchBook 성능 테스트
+        startTime = System.nanoTime();
+        manager.searchBook(keyword);
+        endTime = System.nanoTime();
+        durationSearch = endTime - startTime;
+        System.out.println("searchBook 걸린 시간: " + durationSearch + " 나노초");
+
+        // search_bs 성능 테스트
+        startTime = System.nanoTime();
+        manager.search_bs(id);
+        endTime = System.nanoTime();
+        durationSearchBs = endTime - startTime;
+        System.out.println("search_bs 걸린 시간: " + durationSearchBs + " 나노초");
+
+        // 성능 비교 테스트
+        assertTrue(durationSearch > 0, "searchBook 수행 시간 확인 필요");
+        assertTrue(durationSearchBs > 0, "search_bs 수행 시간 확인 필요");
+
+        System.out.println("testPerformance2 종료");
+    }
 
     @Test
     public void testPerformance3() {
